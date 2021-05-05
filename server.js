@@ -11,11 +11,15 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(morgan("dev"));
 
-mongoose.connect("mongodb://localhost/workouttracker", {
+
+
+mongoose.connect("mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
 })
+app.use(require("./routes/htmlRoutes.js"));
+app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
     console.log("app running on PORT: ",PORT);
